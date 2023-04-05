@@ -80,6 +80,70 @@ nav ul li a:hover::after {
     text-shadow: 3px 2px 5px #ffffff82;
 }
 
+/* -------------about------------- */
+#about{
+    padding: 80px 0;
+    color: #ababab;
+}
+
+/* #about .container {
+    background: #fff;
+} */
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.about-col-1 {
+    flex-basis: 35%;
+}
+
+.about-col-1 img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.about-col-2 {
+    flex-basis: 60%;
+}
+
+.sub-titulo {
+    font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.tab-titles {
+    display: flex;
+    margin: 20px 0 40px;
+    /* background: #ababab;
+    color: #080808; */
+}
+
+.tab-links {
+    margin-right: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+
+.tab-links::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    background: linear-gradient(95deg,#bb0808,#fff);
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: .4s;
+}
+
+.tab-links.active-link::after {
+   width: 50%;
+}
 
 
 
