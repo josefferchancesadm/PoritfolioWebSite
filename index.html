@@ -16,13 +16,15 @@
       <div class="container">
         <nav>
           <img src="images/logo.png" class="logo" />
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Portifólio</a></li>
-            <li><a href="#">Contato</a></li>
+          <ul id="sidemenu">
+            <li><a href="#header">Home</a></li>
+            <li><a href="#about">Sobre</a></li>
+            <li><a href="#services">Serviços</a></li>
+            <li><a href="#portfolio">Portifólio</a></li>
+            <li><a href="#contact">Contato</a></li>
+            <i class="fa fa-times" onclick="closemenu()"></i>
           </ul>
+          <i class="fa fa-bars" onclick="openmenu()"></i>
         </nav>
         <div class="header-text">
           <p>Narradores</p>
@@ -176,17 +178,29 @@
             <a href="images/my-cv.pdf" download class="btn">Download CV</a>
           </div>
           <div class="contact-right">
-            <form>
-              <input type="text" name="name" placeholder="Seu nome" required>
-              <input type="email" name="email" placeholder="Seu email" required>
-              <textarea name="message" rows="6" placeholder="Sua mensagem"></textarea>
+            <form name="submit-to-google-sheet">
+              <input type="text" name="Name" placeholder="Seu nome" required />
+              <input
+                type="email"
+                name="Email"
+                placeholder="Seu email"
+                required
+              />
+              <textarea
+                name="Message"
+                rows="6"
+                placeholder="Sua mensagem"
+              ></textarea>
               <button type="submit" class="btn btn2">Confirmar</button>
             </form>
           </div>
         </div>
       </div>
       <div class="copyright">
-          <p>Copyright © Cowboy Cowgirl. Todos os direitos <i class="fa fa-heart"></i> reservados</p>
+        <p>
+          Copyright © Cowboy Cowgirl. Todos os direitos
+          <i class="fa fa-heart"></i> reservados
+        </p>
       </div>
     </div>
 
@@ -204,6 +218,30 @@
         event.currentTarget.classList.add("active-link");
         document.getElementById(tabname).classList.add("active-tab");
       }
+    </script>
+
+    <script>
+      var sidemenu = document.getElementById("sidemenu");
+
+      function openmenu() {
+        sidemenu.style.left = "0";
+      }
+      function closemenu() {
+        sidemenu.style.left = "-250px";
+      }
+    </script>
+
+    <script>
+      const scriptURL =
+        'https://script.google.com/macros/s/AKfycbw377YPN6hlwp0HbEML51npiwIIaiwl_WTqHtUQq8v__n9xVEpD7FeEbnTbhHCPu89eog/exec';
+      const form = document.forms['submit-to-google-sheet'];
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then((response) => console.log("Success!", response))
+          .catch((error) => console.error("Error!", error.message));
+      });
     </script>
   </body>
 </html>
