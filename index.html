@@ -193,6 +193,7 @@
               ></textarea>
               <button type="submit" class="btn btn2">Confirmar</button>
             </form>
+            <span id="msg"></span>
           </div>
         </div>
       </div>
@@ -233,13 +234,20 @@
 
     <script>
       const scriptURL =
-        'https://script.google.com/macros/s/AKfycbw377YPN6hlwp0HbEML51npiwIIaiwl_WTqHtUQq8v__n9xVEpD7FeEbnTbhHCPu89eog/exec';
-      const form = document.forms['submit-to-google-sheet'];
+        "https://script.google.com/macros/s/AKfycbw377YPN6hlwp0HbEML51npiwIIaiwl_WTqHtUQq8v__n9xVEpD7FeEbnTbhHCPu89eog/exec";
+      const form = document.forms["submit-to-google-sheet"];
+      const msg = document.getElementById("msg");
 
-      form.addEventListener('submit', (e) => {
+      form.addEventListener("submit", (e) => {
         e.preventDefault();
-        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-          .then((response) => console.log("Success!", response))
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            msg.innerHTML = "Mensagem enviada com sucesso!";
+            setTimeout(function () {
+              msg.innerHTML = "";
+            }, 5000);
+            form.reset();
+          })
           .catch((error) => console.error("Error!", error.message));
       });
     </script>
